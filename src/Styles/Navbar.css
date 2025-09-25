@@ -1,0 +1,279 @@
+/* =======================
+   🌐 THEME VARIABLES
+======================= */
+.navbar.light {
+  --bg-color: #ffffff;          /* White */
+  --text-color: #2563EB;        /* Royal Blue */
+  --accent-color: #2563EB;      /* Royal Blue */
+  --hover-color: #FF6B35;       /* Orange Accent */
+  --neutral-color: #F3F4F6;     /* Light Gray */
+}
+
+.navbar.dark {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;        /* White on dark */
+  --accent-color: #2563EB;      /* Royal Blue */
+  --hover-color: #FF6B35;       /* Orange Accent */
+  --neutral-color: #2c2c2c;
+}
+
+/* =======================
+   🧭 NAVBAR BASE
+======================= */
+.navbar {
+  height: 70px;
+  background-color: var(--bg-color);
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--accent-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* =======================
+   🐺 LOGO
+======================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 2px solid var(--accent-color);
+  transition: transform 0.3s ease;
+}
+
+.logo h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+.logo:hover h2 {
+  color: var(--hover-color);
+}
+
+/* =======================
+   🍔 HAMBURGER ICON
+======================= */
+.menu-icon {
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: none;
+  color: var(--accent-color);
+  z-index: 1100;
+}
+
+@media screen and (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+}
+
+/* =======================
+   📁 NAV LINKS
+======================= */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  transition: left 0.3s ease;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item > a,
+.nav-item-header {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--text-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease;
+}
+
+.nav-item > a:hover,
+.nav-item-header:hover {
+  color: var(--hover-color);
+}
+
+/* =======================
+   📂 DROPDOWN MENU
+======================= */
+.dropdown {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--bg-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
+  min-width: 200px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2); /* Subtle blue shadow */
+}
+
+.nav-item.active .dropdown {
+  display: flex;
+}
+
+.dropdown li {
+  padding: 8px 15px;
+}
+
+.dropdown li a {
+  font-weight: normal;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.dropdown li a:hover {
+  color: var(--hover-color);
+}
+
+/* =======================
+   📂 SUB-DROPDOWN
+======================= */
+.has-sublinks {
+  position: relative;
+}
+
+.has-sublinks > span {
+  font-weight: bold;
+  display: block;
+  padding: 8px 15px;
+  color: var(--text-color);
+  cursor: default;
+}
+
+.sub-dropdown {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: var(--bg-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.25); /* Blue glow */
+}
+
+.has-sublinks:hover > .sub-dropdown {
+  display: block;
+}
+
+.sub-dropdown li a {
+  padding: 8px 15px;
+  display: block;
+}
+
+.sub-dropdown li a:hover {
+  color: var(--hover-color);
+}
+
+/* =======================
+   ⬇️ ARROW
+======================= */
+.dropdown-arrow {
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* =======================
+   📱 MOBILE MENU
+======================= */
+@media screen and (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: 0;
+   
+    margin-top: 80px;
+    left: -260px;
+    width: 220px;
+    height: 80vh;
+    background-color: var(--bg-color);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: -100px;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+    transition: left 0.3s ease-in-out;
+
+    /* ✅ Scroll fix */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--neutral-color);
+                    
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-item-header,
+  .nav-item > a {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1.1rem;
+  }
+
+  .dropdown {
+    position: static;
+    border: none;
+    box-shadow: none;
+    padding-left: 15px;
+    display: none;
+  }
+
+  .nav-item.active .dropdown {
+    display: flex;
+  }
+
+  .sub-dropdown {
+    position: static;
+    border: none;
+    box-shadow: none;
+    padding-left: 20px;
+    display: none;
+  }
+
+  .has-sublinks:hover > .sub-dropdown {
+    display: flex;
+    flex-direction: column;
+  }
+}
