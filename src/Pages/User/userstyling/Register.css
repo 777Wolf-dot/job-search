@@ -1,0 +1,40 @@
+.register-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.register-container h1 {
+  color: #2563EB;
+  margin-bottom: 20px;
+}
+
+.role-selection button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.register-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.register-form button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.message {
+  margin-top: 10px;
+  color: #2563EB;
+  font-weight: bold;
+}

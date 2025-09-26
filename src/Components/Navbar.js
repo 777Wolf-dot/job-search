@@ -82,7 +82,7 @@ const Navbar = () => {
       key: "user",
       links: [
         { name: "Login", path: "/login" },
-        { name: "Register", path: "/register" },
+        { name: "Register", path: "/user/register" },
         { name: "Profile", path: "/profile" },
         { name: "Dashboard", path: "/dashboard" },
       ],
