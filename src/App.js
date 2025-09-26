@@ -14,6 +14,7 @@ import MissionVision from "./Pages/About/MissionVision";
 import OurStory from "./Pages/About/OurStory";
 import Team from "./Pages/About/Team";
 import Register from "./Pages/User/Register";
+import Login from "./Pages/User/Login";
 // import Contact from "./Pages/Contact";
 // import NotFound from "./Pages/NotFound";
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/about/mission" element={<MissionVision />} />
         <Route path="/about/team" element={<Team />} />
         <Route path="/user/register" element={<Register />} />
+        <Route path="/user/login" element={<Login />} />
     </Routes>
     </>
   );

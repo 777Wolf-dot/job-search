@@ -81,7 +81,7 @@ const Navbar = () => {
       emoji: "👤",
       key: "user",
       links: [
-        { name: "Login", path: "/login" },
+        { name: "Login", path: "/user/login" },
         { name: "Register", path: "/user/register" },
         { name: "Profile", path: "/profile" },
         { name: "Dashboard", path: "/dashboard" },

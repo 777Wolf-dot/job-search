@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { supabase } from "../../supabaseClient";
-import "../User/userstyling/Register.css"
+import "../User/userstyling/Register.css";
 
 const Register = () => {
   const [role, setRole] = useState(""); // employer | employee
@@ -16,6 +16,19 @@ const Register = () => {
     setMessage("");
 
     try {
+      // Check if email already exists in profiles
+      const { data: existingProfile } = await supabase
+        .from("user_profiles")
+        .select("id")
+        .eq("email", email)
+        .single();
+
+      if (existingProfile) {
+        setMessage("❌ This email is already registered. Try logging in.");
+        setLoading(false);
+        return;
+      }
+
       // 1. Create user in Supabase Auth
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -42,6 +55,10 @@ const Register = () => {
       }
 
       setMessage("✅ Account created! Check your email to verify.");
+      setEmail("");
+      setPassword("");
+      setName("");
+      setRole("");
     } catch (err) {
       console.error(err);
       setMessage("❌ " + err.message);
