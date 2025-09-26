@@ -29,10 +29,14 @@ const Register = () => {
         return;
       }
 
-      // 1. Create user in Supabase Auth
+      // 1. Create user in Supabase Auth with proper redirect URL
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          emailRedirectTo: "https://job-search-1-yhv2.onrender.com/login", // update to your deployed login page
+          data: { name, role }, // store name and role in user_metadata
+        },
       });
 
       if (error) throw error;
@@ -54,7 +58,9 @@ const Register = () => {
         if (profileError) throw profileError;
       }
 
-      setMessage("✅ Account created! Check your email to verify.");
+      setMessage(
+        "✅ Account created! Check your email to verify. Make sure to use the link from your deployed site."
+      );
       setEmail("");
       setPassword("");
       setName("");
@@ -118,4 +124,3 @@ const Register = () => {
 };
 
 export default Register;
-
