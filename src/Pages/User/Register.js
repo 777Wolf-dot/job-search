@@ -3,7 +3,7 @@ import { supabase } from "../../supabaseClient";
 import "../User/userstyling/Register.css";
 
 const Register = () => {
-  const [role, setRole] = useState(""); // employer | employee
+  const [role, setRole] = useState(""); // "employer" or "employee"
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -29,26 +29,27 @@ const Register = () => {
         return;
       }
 
-      // 1. Create user in Supabase Auth with proper redirect URL
-      const { data, error } = await supabase.auth.signUp({
+      // 1️⃣ Sign up user in Supabase Auth with metadata & proper redirect
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: "https://job-search-1-yhv2.onrender.com/login", // update to your deployed login page
-          data: { name, role }, // store name and role in user_metadata
+          emailRedirectTo: "https://job-search-1-yhv2.onrender.com/login", // deployed login page
+          data: { name, role }, // user_metadata
         },
       });
 
-      if (error) throw error;
+      if (signUpError) throw signUpError;
 
-      // 2. Store role + name in user_profiles table
-      const user = data.user;
-      if (user) {
+      const user = signUpData.user;
+
+      // 2️⃣ Insert into user_profiles table only after user creation
+      if (user && user.id) {
         const { error: profileError } = await supabase
           .from("user_profiles")
           .insert([
             {
-              id: user.id, // same id as auth
+              id: user.id, // must match auth.users.id
               name,
               role,
               email,
@@ -59,12 +60,15 @@ const Register = () => {
       }
 
       setMessage(
-        "✅ Account created! Check your email to verify. Make sure to use the link from your deployed site."
+        "✅ Account created! Check your email to verify. Use the link from your deployed site."
       );
+
+      // Clear form
       setEmail("");
       setPassword("");
       setName("");
       setRole("");
+
     } catch (err) {
       console.error(err);
       setMessage("❌ " + err.message);
@@ -77,8 +81,8 @@ const Register = () => {
     <div className="register-container">
       <h1>Create Account</h1>
 
-      {/* STEP 1: Role selection */}
       {!role ? (
+        // STEP 1: Role selection
         <div className="role-selection">
           <h2>Register As</h2>
           <button onClick={() => setRole("employer")} className="btn primary">
@@ -89,7 +93,7 @@ const Register = () => {
           </button>
         </div>
       ) : (
-        /* STEP 2: Registration Form */
+        // STEP 2: Registration Form
         <form onSubmit={handleRegister} className="register-form">
           <h2>{role === "employer" ? "Employer" : "Employee"} Signup</h2>
           <input
