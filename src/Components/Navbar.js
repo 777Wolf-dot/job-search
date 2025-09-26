@@ -83,7 +83,7 @@ const Navbar = () => {
       links: [
         { name: "Login", path: "/user/login" },
         { name: "Register", path: "/user/register" },
-        { name: "Profile", path: "/profile" },
+        { name: "Profile", path: "/user/profile" },
         { name: "Dashboard", path: "/dashboard" },
       ],
     },
