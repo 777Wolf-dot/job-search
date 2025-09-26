@@ -113,7 +113,7 @@ const Navbar = () => {
       emoji: "ℹ️",
       key: "about",
       links: [
-        { name: "Our Story", path: "/about/story" },
+        { name: "Our Story", path: "/about/our-story" },
         { name: "Mission & Vision", path: "/about/mission" },
         { name: "Team", path: "/about/team" },
       ],

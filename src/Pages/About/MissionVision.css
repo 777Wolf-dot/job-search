@@ -1,0 +1,68 @@
+.mission-vision {
+  padding: 80px 20px;
+  background: #f9fafb;
+  color: #1f2937;
+}
+
+.mission-vision .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.mv-card {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.mv-card .mv-text {
+  flex: 1;
+}
+
+.mv-card .mv-text h2 {
+  font-size: 2rem;
+  color: #2563eb; /* Royal Blue */
+  margin-bottom: 15px;
+}
+
+.mv-card .mv-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.mv-card .mv-image {
+  flex: 1;
+}
+
+.mv-card .mv-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.mv-card .mv-image img:hover {
+  transform: scale(1.05);
+}
+
+/* Alternate layout for Vision */
+.mv-card.vision {
+  flex-direction: row-reverse;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .mv-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .mv-card.vision {
+    flex-direction: column;
+  }
+}

@@ -5,29 +5,28 @@ import "../Styles/Home.css";// We'll style separately
 const Home = () => {
   return (
     <div className="home">
-      {/* ==========================
-          🌟 HERO SECTION
-      ========================== */}
-      <section className="hero">
-        <div className="hero-content">
-          <h1>
-            Find Your <span className="highlight">Dream Job</span> or Offer Your{" "}
-            <span className="highlight">Unique Gig</span>
-          </h1>
-          <p>
-            Connecting talents with opportunities across Kenya and beyond.
-            Explore jobs, gigs, and resources designed to fuel your career
-            growth.
-          </p>
-          <div className="hero-buttons">
-            <button className="btn primary">Browse Jobs</button>
-            <button className="btn secondary">Post a Gig</button>
-          </div>
-        </div>
-        <div className="hero-image">
-          
-        </div>
-      </section>
+     {/* ==========================
+      🌟 HERO SECTION WITH BACKGROUND SLIDER
+========================== */}
+<section className="hero">
+  <div className="hero-overlay">
+    <div className="hero-content">
+      <h1>
+        Find Your <span className="highlight">Dream Job</span> <br />
+        or Offer Your <span className="highlight">Unique Gig</span>
+      </h1>
+      <p>
+        Connecting talents with opportunities across Kenya and beyond.
+        Explore jobs, gigs, and resources designed to fuel your career
+        growth.
+      </p>
+      <div className="hero-buttons">
+        <button className="btn primary">🔍 Browse Jobs</button>
+        <button className="btn secondary">➕ Post a Gig</button>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ==========================
           🔑 FEATURES SECTION

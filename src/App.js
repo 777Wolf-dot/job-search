@@ -10,7 +10,9 @@ import Home from "./Pages/Home";
 // import PopularGigs from "./Pages/PopularGigs";
 // import Companies from "./Pages/Companies";
 // import CompanyProfile from "./Pages/CompanyProfile";
-// import About from "./Pages/About";
+import MissionVision from "./Pages/About/MissionVision";
+import OurStory from "./Pages/About/OurStory";
+import Team from "./Pages/About/Team";
 // import Contact from "./Pages/Contact";
 // import NotFound from "./Pages/NotFound";
 
@@ -21,7 +23,10 @@ function App() {
     <Navbar/>
     <Routes>
        <Route path="/" element={<Home />} />
-
+   
+        <Route path="/about/our-story" element={<OurStory />} />
+        <Route path="/about/mission" element={<MissionVision />} />
+        <Route path="/about/team" element={<Team />} />
     </Routes>
     </>
   );
