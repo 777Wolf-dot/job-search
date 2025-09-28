@@ -1,55 +1,44 @@
-import React, { useState } from "react";
+// src/pages/User/Login.js
+import { useState } from "react";
 import { supabase } from "../../supabaseClient";
 import { useNavigate } from "react-router-dom";
-import "../User/userstyling/Login.css";
+import "./userstyling/Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(null);
     setLoading(true);
-    setMessage("");
 
     try {
-      // 1. Authenticate with Supabase
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+        email: form.email,
+        password: form.password,
       });
 
-      if (error) throw error;
+      if (signInError) throw signInError;
 
-      if (!data.user) {
-        setMessage("❌ Login failed. Check your email and password.");
-        setLoading(false);
-        return;
+      // ✅ Require email verification
+      if (!data?.user?.email_confirmed_at) {
+        await supabase.auth.signOut();
+        throw new Error(
+          "Please verify your email before logging in. Check your inbox for the confirmation link."
+        );
       }
 
-      // 2. Fetch user profile to determine role
-      const { data: profile, error: profileError } = await supabase
-        .from("user_profiles")
-        .select("role")
-        .eq("id", data.user.id)
-        .single();
-
-      if (profileError) throw profileError;
-
-      setMessage("✅ Login successful!");
-
-      // 3. Redirect based on role
-      if (profile.role === "employer") {
-        navigate("/employer-dashboard");
-      } else {
-        navigate("/employee-dashboard");
-      }
+      // Redirect to profile if verified
+      navigate("/user/profile");
     } catch (err) {
-      console.error(err);
-      setMessage("❌ " + err.message);
+      setError(err.message || "Login failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -57,30 +46,33 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h1>Login</h1>
       <form onSubmit={handleLogin} className="login-form">
+        <h2 className="form-title">Login</h2>
+
+        {error && <p className="error">{error}</p>}
+
         <input
           type="email"
-          placeholder="Email Address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
           required
         />
+
         <input
           type="password"
+          name="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={form.password}
+          onChange={handleChange}
           required
         />
-        <button type="submit" className="btn primary" disabled={loading}>
+
+        <button type="submit" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </button>
-        <p className="message">{message}</p>
       </form>
-      <p className="redirect">
-        Don't have an account? <a href="/register">Register here</a>
-      </p>
     </div>
   );
 };

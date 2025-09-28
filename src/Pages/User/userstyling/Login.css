@@ -1,87 +1,62 @@
-/* =======================
-   🌐 LOGIN PAGE STYLING
-======================= */
+/* src/Pages/User/userstyling/Login.css */
 
 .login-container {
-  max-width: 450px;
-  margin: 60px auto;
-  padding: 30px 25px;
-  background-color: #ffffff; /* White background */
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.login-container h1 {
-  color: #2563EB; /* Royal Blue */
-  margin-bottom: 20px;
-  font-size: 2rem;
-  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f8faff; /* light blue tint */
 }
 
 .login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
 }
 
-.login-form input {
-  padding: 12px 15px;
+.form-title {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #007bff; /* blue */
+  margin-bottom: 1.5rem;
+}
+
+.login-form input,
+.login-form button {
+  display: block;
+  width: 100%;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
   border-radius: 8px;
-  border: 1px solid #F3F4F6; /* Light Gray */
+  border: 1px solid #dce3f0;
   font-size: 1rem;
-  outline: none;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
 .login-form input:focus {
-  border: 2px solid #2563EB; /* Royal Blue */
-  box-shadow: 0 0 8px rgba(37, 99, 235, 0.2);
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
 }
 
-.btn.primary {
-  padding: 12px 0;
-  background-color: #2563EB; /* Royal Blue */
+.login-form button {
+  background-color: #007bff;
   color: #fff;
   font-weight: 600;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
-.btn.primary:hover {
-  background-color: #1d4ed8; /* Darker blue on hover */
+.login-form button:hover {
+  background-color: #0056b3;
 }
 
-.message {
-  margin-top: 10px;
-  font-size: 0.95rem;
-  color: #FF6B35; /* Orange for error / info */
-}
-
-.redirect {
-  margin-top: 20px;
-  font-size: 0.95rem;
-  color: #6B7280; /* Gray text */
-}
-
-.redirect a {
-  color: #2563EB; /* Royal Blue */
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.redirect a:hover {
-  color: #1d4ed8; /* Darker blue on hover */
-}
-
-/* Responsive */
-@media screen and (max-width: 500px) {
-  .login-container {
-    margin: 40px 20px;
-    padding: 25px 15px;
-  }
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
