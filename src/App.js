@@ -16,8 +16,13 @@ import Team from "./Pages/About/Team";
 import Register from "./Pages/User/Register";
 import Login from "./Pages/User/Login";
 import Profile from "./Pages/User/Profile";
+import Jobs from "./Pages/Jobs/Jobs";
+import PostJob from "./Pages/Jobs/PostJob";
 // import Contact from "./Pages/Contact";
 // import NotFound from "./Pages/NotFound";
+import  EmployerDashboard from "./Pages/User/EmployerDashboard";
+import EmployeeDashboard from "./Pages/User/EmployeeDashboard";
+import Dashboard from "./Pages/User/Dashboard";
 
 
 function App() {
@@ -33,6 +38,11 @@ function App() {
         <Route path="/user/register" element={<Register />} />
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/profile" element={<Profile />} />
+        <Route path="/user/employer-dashboard" element={<EmployerDashboard />} />
+        <Route path="/user/employee-dashboard" element={<EmployeeDashboard />} />
+        <Route path="/user/dashboard" element={<Dashboard />} />
+        <Route path="/jobs/jobs" element={<Jobs />} />
+        <Route path="/jobs/post-job" element={<PostJob />} />
     </Routes>
     </>
   );
