@@ -51,7 +51,7 @@ const Navbar = () => {
       emoji: "🎯",
       key: "gigs",
       links: [
-        { name: "Find Gigs", path: "/gigs" },
+        { name: "Find Gigs", path: "/gigs/find-gigs" },
         { name: "Offer a Gig", path: "/offer-gig" },
         { name: "Popular Gigs", path: "/gigs/popular" },
       ],

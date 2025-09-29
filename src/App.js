@@ -23,6 +23,8 @@ import PostJob from "./Pages/Jobs/PostJob";
 import  EmployerDashboard from "./Pages/User/EmployerDashboard";
 import EmployeeDashboard from "./Pages/User/EmployeeDashboard";
 import Dashboard from "./Pages/User/Dashboard";
+import FindGigs from "./Pages/Gigs/FindGigs";
+import PostGig from "./Pages/Gigs/PostGig";
 
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
         <Route path="/user/dashboard" element={<Dashboard />} />
         <Route path="/jobs/jobs" element={<Jobs />} />
         <Route path="/jobs/post-job" element={<PostJob />} />
+        <Route path="/gigs/find-gigs" element={<FindGigs />} />
+        <Route path="/gigs/post-gig" element={<PostGig />} />
     </Routes>
     </>
   );

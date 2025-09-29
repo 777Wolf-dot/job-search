@@ -1,6 +1,7 @@
 // src/pages/Home.js
 import React from "react";
 import "../Styles/Home.css";// We'll style separately
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -20,10 +21,15 @@ const Home = () => {
         Explore jobs, gigs, and resources designed to fuel your career
         growth.
       </p>
-      <div className="hero-buttons">
-        <button className="btn primary">🔍 Browse Jobs</button>
-        <button className="btn secondary">➕ Post a Gig</button>
-      </div>
+      <div className="homepage-buttons">
+  <Link to="/jobs/jobs" className="btn primary">
+    🔍 Browse Jobs
+  </Link>
+
+  <Link to="/jobs/post-job" className="btn secondary">
+    ➕ Post a Gig
+  </Link>
+</div>
     </div>
   </div>
 </section>

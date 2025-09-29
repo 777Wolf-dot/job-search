@@ -1,73 +1,91 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { supabase } from "../../supabaseClient";
-import { useNavigate } from "react-router-dom";
+import "../../Styles/PostJob.css";
 
-const PostJob = () => {
-  const [user, setUser] = useState(null);
-  const [job, setJob] = useState({ title: "", description: "" });
-  const navigate = useNavigate();
+export default function PostJob() {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [requirements, setRequirements] = useState("");
+  const [salary, setSalary] = useState("");
+  const [location, setLocation] = useState("");
+  const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    const getUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      setUser(data.user);
-    };
-    getUser();
-  }, []);
-
-  const handleChange = (e) => {
-    setJob({ ...job, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handlePost = async (e) => {
     e.preventDefault();
 
-    if (!user) {
-      alert("Please login to post a job.");
-      navigate("/user/login");
-      return;
-    }
-
-    if (user.user_metadata.role !== "employer") {
-      alert("Only employers can post jobs.");
-      return;
-    }
+    const user = (await supabase.auth.getUser()).data.user;
 
     const { error } = await supabase.from("jobs").insert([
-      { title: job.title, description: job.description, employer_id: user.id },
+      {
+        title,
+        description,
+        requirements,
+        salary,
+        location,
+        employer_id: user.id,
+      },
     ]);
 
     if (error) {
-      alert(error.message);
+      setMessage("❌ Failed to post job: " + error.message);
     } else {
-      alert("✅ Job posted successfully!");
-      setJob({ title: "", description: "" });
+      setMessage("✅ Job posted successfully!");
+      setTitle("");
+      setDescription("");
+      setRequirements("");
+      setSalary("");
+      setLocation("");
     }
   };
 
   return (
-    <div>
-      <h2>Post a Job</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-2xl p-6">
+      <h2 className="text-2xl font-bold mb-4 text-center">Post a Job</h2>
+      <form onSubmit={handlePost} className="space-y-4">
         <input
           type="text"
-          name="title"
           placeholder="Job Title"
-          value={job.title}
-          onChange={handleChange}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full p-2 border rounded-md"
           required
         />
         <textarea
-          name="description"
           placeholder="Job Description"
-          value={job.description}
-          onChange={handleChange}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="w-full p-2 border rounded-md"
           required
         />
-        <button type="submit">Post Job</button>
+        <input
+          type="text"
+          placeholder="Requirements"
+          value={requirements}
+          onChange={(e) => setRequirements(e.target.value)}
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          type="text"
+          placeholder="Salary"
+          value={salary}
+          onChange={(e) => setSalary(e.target.value)}
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          type="text"
+          placeholder="Location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          className="w-full p-2 border rounded-md"
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+        >
+          Post Job
+        </button>
       </form>
+      {message && <p className="mt-4 text-center">{message}</p>}
     </div>
   );
-};
-
-export default PostJob;
+}

@@ -157,8 +157,28 @@
 .cta button {
   margin-top: 15px;
 }
+.homepage-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+  text-decoration: none;
 
-
+}
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+  }
+  .hero-image, .hero-content {
+    text-align: center;
+  }
+}
+.homepage-buttons .btn {
+  text-decoration: none;
+}   
+.homepage-buttons .btn.primary {
+  background-color: #2563eb;
+}
 
 
 
