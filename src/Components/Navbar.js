@@ -105,8 +105,14 @@ const Navbar = () => {
       links: [
         { name: "FAQs", path: "/faqs" },
         { name: "Help Center", path: "/help" },
-        { name: "Contact Us", path: "/contact" },
       ],
+    },
+    {
+      name: "Contact",
+      emoji: "📞",
+      key: "contact",
+      path: "/contact",
+      links: [], // direct page, not dropdown
     },
     {
       name: "About Us",
@@ -146,7 +152,7 @@ const Navbar = () => {
                 openDropdown === item.key ? "active" : ""
               }`}
             >
-              {item.links.length > 0 ? (
+              {item.links && item.links.length > 0 ? (
                 <>
                   {/* Dropdown category */}
                   <div
@@ -188,7 +194,7 @@ const Navbar = () => {
                   </ul>
                 </>
               ) : (
-                // Simple link (Home)
+                // Simple link (Home, Contact)
                 <Link to={item.path} onClick={closeMenu}>
                   {item.emoji} {item.name}
                 </Link>

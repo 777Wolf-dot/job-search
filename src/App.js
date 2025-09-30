@@ -18,22 +18,21 @@ import Login from "./Pages/User/Login";
 import Profile from "./Pages/User/Profile";
 import Jobs from "./Pages/Jobs/Jobs";
 import PostJob from "./Pages/Jobs/PostJob";
-// import Contact from "./Pages/Contact";
+import Contact from "./Pages/contact";   // ✅ Now active
 // import NotFound from "./Pages/NotFound";
-import  EmployerDashboard from "./Pages/User/EmployerDashboard";
+import EmployerDashboard from "./Pages/User/EmployerDashboard";
 import EmployeeDashboard from "./Pages/User/EmployeeDashboard";
 import Dashboard from "./Pages/User/Dashboard";
 import FindGigs from "./Pages/Gigs/FindGigs";
 import PostGig from "./Pages/Gigs/PostGig";
 
-
 function App() {
   return (
     <>
-    <Navbar/>
-    <Routes>
-       <Route path="/" element={<Home />} />
-   
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+
         <Route path="/about/our-story" element={<OurStory />} />
         <Route path="/about/mission" element={<MissionVision />} />
         <Route path="/about/team" element={<Team />} />
@@ -47,8 +46,11 @@ function App() {
         <Route path="/jobs/post-job" element={<PostJob />} />
         <Route path="/gigs/find-gigs" element={<FindGigs />} />
         <Route path="/gigs/post-gig" element={<PostGig />} />
-    </Routes>
+
+        <Route path="/contact" element={<Contact />} />   {/* ✅ Added route */}
+      </Routes>
     </>
   );
-};  
+}
+
 export default App;
