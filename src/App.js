@@ -26,6 +26,10 @@ import Dashboard from "./Pages/User/Dashboard";
 import FindGigs from "./Pages/Gigs/FindGigs";
 import PostGig from "./Pages/Gigs/PostGig";
 
+// ✅ Support Pages
+import FAQs from "./Pages/User/userstyling/support/FAQs";
+import HelpCenter from "./Pages/User/userstyling/support/HelpCenter";
+
 function App() {
   return (
     <>
@@ -33,20 +37,32 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
+        {/* About */}
         <Route path="/about/our-story" element={<OurStory />} />
         <Route path="/about/mission" element={<MissionVision />} />
         <Route path="/about/team" element={<Team />} />
+
+        {/* User */}
         <Route path="/user/register" element={<Register />} />
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/profile" element={<Profile />} />
         <Route path="/user/employer-dashboard" element={<EmployerDashboard />} />
         <Route path="/user/employee-dashboard" element={<EmployeeDashboard />} />
         <Route path="/user/dashboard" element={<Dashboard />} />
-        <Route path="/jobs/jobs" element={<Jobs />} />
-        <Route path="/jobs/post-job" element={<PostJob />} />
+
+        {/* Jobs */}
+        <Route path="/jobs/jobs" element={<Jobs />} />        // Browse Jobs
+        <Route path="/jobs/post" element={<PostJob />} /> // Post a Job
+
+        {/* Gigs */}
         <Route path="/gigs/find-gigs" element={<FindGigs />} />
         <Route path="/gigs/post-gig" element={<PostGig />} />
 
+        {/* Support */}
+        <Route path="/faqs" element={<FAQs />} />        // FAQs Page
+        <Route path="/help" element={<HelpCenter />} />  // Help Center Page
+
+        {/* Contact */}
         <Route path="/contact" element={<Contact />} />   {/* ✅ Added route */}
       </Routes>
     </>

@@ -19,23 +19,17 @@ const Navbar = () => {
 
   // ✅ Full detailed menu list
   const menuItems = [
-    {
-      name: "Home",
-      emoji: "🏠",
-      key: "home",
-      path: "/",
-      links: [],
-    },
+    { name: "Home", emoji: "🏠", key: "home", path: "/", links: [] },
     {
       name: "Jobs",
       emoji: "💼",
       key: "jobs",
       links: [
-        { name: "Browse Jobs", path: "/jobs" },
-        { name: "Post a Job", path: "/post-job" },
+        { name: "Browse Jobs", path: "/jobs/jobs" }, // Updated to your Jobs.jsx
+        { name: "Post a Job", path: "/jobs/post" },  // Updated to your Post.jsx
         {
           name: "Categories",
-          path: "#", // no page, just category section
+          path: "#",
           sublinks: [
             { name: "Tech & IT", path: "/jobs/category/tech" },
             { name: "Writing & Translation", path: "/jobs/category/writing" },
@@ -107,13 +101,7 @@ const Navbar = () => {
         { name: "Help Center", path: "/help" },
       ],
     },
-    {
-      name: "Contact",
-      emoji: "📞",
-      key: "contact",
-      path: "/contact",
-      links: [], // direct page, not dropdown
-    },
+    { name: "Contact", emoji: "📞", key: "contact", path: "/contact", links: [] },
     {
       name: "About Us",
       emoji: "ℹ️",
